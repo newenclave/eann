@@ -3,6 +3,7 @@
 #include <random>
 #include <cmath>
 #include <cassert>
+#include <initializer_list>
 
 #include "layer.h"
 #include "matrix.h"
@@ -31,13 +32,18 @@ namespace eann {
                 layers_[t].resize(topology[t] + 1);
                 layers_[t].back() = calcs::bias();
                 if (t > 0) {
-                    weights_[t - 1] = matrix_type(topology[t - 1] + 1, topology[t]);
-                    weights_[t - 1].for_each([](value_type &val) {
+                    auto pt = t - 1;
+                    weights_[pt] = matrix_type(topology[pt] + 1, topology[t]);
+                    weights_[pt].for_each([](value_type &val) {
                         val = random_value(0.0, 1.0);
                     });
                 }
             }
         }
+
+        network(std::initializer_list<std::size_t> init)
+            :network(topology_type(init))
+        {}
 
         void init_training()
         {

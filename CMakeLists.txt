@@ -28,3 +28,6 @@ foreach( src_dir ${src} )
 endforeach( )
 
 add_executable( ${PROJECT_NAME} ${lib_src} )
+
+
+add_executable( mnist_test mnist/main.cpp )

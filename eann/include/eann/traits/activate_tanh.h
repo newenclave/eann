@@ -9,7 +9,7 @@ namespace eann {
 
             static DataType bias()
             {
-                return 1.0;
+                return -1.0;
             }
 
             static DataType activate(DataType data)

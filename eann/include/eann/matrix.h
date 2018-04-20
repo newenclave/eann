@@ -9,6 +9,12 @@ namespace eann {
     public:
 
         struct dimention_type {
+            dimention_type(std::size_t r, std::size_t c)
+                :row(r)
+                ,col(c)
+            {}
+            dimention_type() = default;
+
             std::size_t row = 0;
             std::size_t col = 0;
         };
@@ -18,7 +24,7 @@ namespace eann {
         matrix & operator = (matrix &&) = default;
 
         matrix(std::size_t rows, std::size_t cols)
-            :dimention_({rows, cols})
+            :dimention_(rows, cols)
             ,storage_(rows * cols)
         { }
 
